@@ -10,6 +10,7 @@ class Puzzle
     write_each_entry f
     write_each_row f
     write_each_column f
+    write_sub_grids f
     f.close
   end
 
@@ -50,6 +51,41 @@ class Puzzle
           ((j+1)..9).each do |r|
             f.print("#{to_entry(i,j,k,true)} #{to_entry(i,r,k,true)} ")
             f.puts "0"
+          end
+        end
+      end
+    end
+  end
+
+  def write_sub_grids f
+    (1..9).each do |k|
+      (0..2).each do |r|
+        (0..2).each do |s|
+          (1..3).each do |i|
+            (1..3).each do |j|
+              ((j+1)..3).each do |t|
+                f.print("#{to_entry(3*r + i, 3*s + j, k, true)} ")
+                f.print("#{to_entry(3*r + i, 3*s + t, k, true)} ")
+                f.puts "0"
+              end
+            end
+          end
+        end
+      end
+    end
+    (1..9).each do |k|
+      (0..2).each do |r|
+        (0..2).each do |s|
+          (1..3).each do |i|
+            (1..3).each do |j|
+              ((i+1)..3).each do |t|
+                (1..3).each do |u|
+                  f.print("#{to_entry(3*r + i, 3*s + j, k, true)} ")
+                  f.print("#{to_entry(3*r + t, 3*s + u, k,true)} ")
+                  f.puts "0"
+                end
+              end
+            end
           end
         end
       end
