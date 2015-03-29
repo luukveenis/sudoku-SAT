@@ -11,6 +11,7 @@ class Puzzle
     write_each_row f
     write_each_column f
     write_sub_grids f
+    write_units f
     f.close
   end
 
@@ -89,6 +90,19 @@ class Puzzle
           end
         end
       end
+    end
+  end
+
+  def write_units f
+    i=1
+    @input.chars.each_slice(9) do |row|
+      row.each_with_index do |val, j|
+        k = val.to_i
+        if k != 0
+          f.puts "#{to_entry(i,j+1,k)} 0"
+        end
+      end
+      i = i + 1
     end
   end
 
