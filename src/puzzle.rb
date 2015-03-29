@@ -1,10 +1,13 @@
 class Puzzle
+  INFILE = "SAT-input-temp.txt"
+  OUTFILE = "SAT-output-temp.txt"
+
   def initialize(input)
     @input = input
   end
 
   def generate
-    f = File.open("../SAT-input.txt", "w")
+    f = File.open(INFILE, "w")
 
     write_header f
     write_each_entry f
