@@ -35,7 +35,7 @@ class Puzzle
       (1..9).each do |k|
         (1..8).each do |i|
           ((i+1)..9).each do |r|
-            f.print(to_entry(i,j,k,true) + " " + to_entry(r,j,k,true) + " ")
+            f.print("#{to_entry(i,j,k,true)} #{to_entry(r,j,k,true)} ")
             f.puts "0"
           end
         end
@@ -48,7 +48,7 @@ class Puzzle
       (1..9).each do |k|
         (1..8).each do |j|
           ((j+1)..9).each do |r|
-            f.print(to_entry(i,j,k,true) + " " + to_entry(i,r,k,true) + " ")
+            f.print("#{to_entry(i,j,k,true)} #{to_entry(i,r,k,true)} ")
             f.puts "0"
           end
         end
