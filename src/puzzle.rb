@@ -8,6 +8,7 @@ class Puzzle
 
     write_header f
     write_each_entry f
+    write_each_row f
     f.close
   end
 
@@ -28,7 +29,24 @@ class Puzzle
     end
   end
 
-  def to_entry i, j, k
-    ((81 * (i - 1)) + (9 * (j - 1)) + (k - 1) + 1).to_s
+  def write_each_row f
+    (1..9).each do |j|
+      (1..9).each do |k|
+        (1..8).each do |i|
+          ((i+1)..9).each do |r|
+            f.print(to_entry(i,j,k,true) + " " + to_entry(r,j,k,true) + " ")
+            f.puts "0"
+          end
+        end
+      end
+    end
+  end
+
+  def to_entry i, j, k, negate = false
+    if negate
+      (-((81 * (i - 1)) + (9 * (j - 1)) + (k - 1) + 1)).to_s
+    else
+      ((81 * (i - 1)) + (9 * (j - 1)) + (k - 1) + 1).to_s
+    end
   end
 end
