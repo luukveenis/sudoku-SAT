@@ -9,6 +9,7 @@ class Puzzle
     write_header f
     write_each_entry f
     write_each_row f
+    write_each_column f
     f.close
   end
 
@@ -35,6 +36,19 @@ class Puzzle
         (1..8).each do |i|
           ((i+1)..9).each do |r|
             f.print(to_entry(i,j,k,true) + " " + to_entry(r,j,k,true) + " ")
+            f.puts "0"
+          end
+        end
+      end
+    end
+  end
+
+  def write_each_column f
+    (1..9).each do |i|
+      (1..9).each do |k|
+        (1..8).each do |j|
+          ((j+1)..9).each do |r|
+            f.print(to_entry(i,j,k,true) + " " + to_entry(i,r,k,true) + " ")
             f.puts "0"
           end
         end
