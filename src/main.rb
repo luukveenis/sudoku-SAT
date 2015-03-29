@@ -6,7 +6,7 @@ def main
     acc = acc + line.chomp.gsub(/[.*?]/, "0")
   end
 
-  Puzzle.new(input).generate
+  Puzzle.new(input).solve
 end
 
 if __FILE__ == $0

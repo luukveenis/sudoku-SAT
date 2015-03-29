@@ -1,3 +1,5 @@
+require_relative "solution"
+
 class Puzzle
   INFILE = "SAT-input-temp.txt"
   OUTFILE = "SAT-output-temp.txt"
@@ -5,6 +7,15 @@ class Puzzle
   def initialize(input)
     @input = input
   end
+
+  def solve
+    generate
+    `./minisat #{INFILE} #{OUTFILE}`
+    response = File.open(OUTFILE, "r").map { |l| l.chomp }
+    solution = Solution.new response
+  end
+
+  private
 
   def generate
     f = File.open(INFILE, "w")
@@ -17,8 +28,6 @@ class Puzzle
     write_units f
     f.close
   end
-
-  private
 
   def write_header f
     f.puts "p cnf 729 8829"
