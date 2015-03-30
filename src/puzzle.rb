@@ -1,4 +1,4 @@
-require "./solution"
+require File.join(File.dirname(__FILE__), "solution")
 
 class Puzzle
   INFILE = "SAT-input-temp.txt"
