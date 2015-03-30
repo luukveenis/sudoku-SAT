@@ -7,11 +7,12 @@ class Puzzle < Sudoku
 
   def initialize input
     @input = input
-    @units = input.chars.count { |c| c != "0" }
+    @units = input.chars.count { |c| c != "-" }
   end
 
   def print
     puts "\nInput:"
+    puts "(-'s are blank entries)"
     puts "====================="
     puts format @input.chars.each_slice(9).to_a
   end
@@ -117,9 +118,8 @@ class Puzzle < Sudoku
     i=1
     @input.chars.each_slice(9) do |row|
       row.each_with_index do |val, j|
-        k = val.to_i
-        if k != 0
-          f.puts "#{to_entry(i,j+1,k)} 0"
+        if val != "-"
+          f.puts "#{to_entry(i,j+1,val.to_i)} 0"
         end
       end
       i = i + 1
