@@ -4,6 +4,10 @@ class Solution
     @results = @satisfiable ? process(response[1]) : nil
   end
 
+  def print
+    puts format_results
+  end
+
   private
 
   def process assignments
@@ -23,5 +27,16 @@ class Solution
     z = ((val - 1) % 9) + 1
     x = (val - 1 - z - (9*(y-1))) / 81 + 2
     [x, y, z]
+  end
+
+  def format_row row
+    row.each_slice(3).to_a.map{ |e| e.join(" ") }.join(" | ")
+  end
+
+  def format_results
+    sep = "\n---------------------\n"
+    @results.each_slice(3).to_a.map do |slice|
+      slice.map{ |row| format_row row }.join("\n")
+    end.join(sep)
   end
 end

@@ -13,6 +13,7 @@ class Puzzle
     `./minisat #{INFILE} #{OUTFILE}`
     response = File.open(OUTFILE, "r").map { |l| l.chomp }
     solution = Solution.new response
+    solution.print
   end
 
   private
