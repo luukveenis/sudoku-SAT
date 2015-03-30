@@ -6,6 +6,7 @@ class Puzzle
 
   def initialize(input)
     @input = input
+    @units = input.chars.count { |c| c != "0" }
   end
 
   def solve
@@ -31,7 +32,7 @@ class Puzzle
   end
 
   def write_header f
-    f.puts "p cnf 729 8829"
+    f.puts "p cnf 729 #{8829 + @units}"
   end
 
   def write_each_entry f
