@@ -1,4 +1,6 @@
-class Solution
+require File.join(File.dirname(__FILE__), "sudoku")
+
+class Solution < Sudoku
   def initialize response
     @satisfiable = response[0] == "SAT"
     @results = @satisfiable ? process(response[1]) : nil
@@ -6,7 +8,10 @@ class Solution
 
   def print
     if @satisfiable
-      puts format_results
+      puts "\nSolution:"
+      puts "====================="
+      puts format @results
+      puts ""
     else
       puts "Error: provided puzzle not satisfiable - no solution"
     end
@@ -31,16 +36,5 @@ class Solution
     z = ((val - 1) % 9) + 1
     x = (val - 1 - z - (9*(y-1))) / 81 + 2
     [x, y, z]
-  end
-
-  def format_row row
-    row.each_slice(3).to_a.map{ |e| e.join(" ") }.join(" | ")
-  end
-
-  def format_results
-    sep = "\n---------------------\n"
-    @results.each_slice(3).to_a.map do |slice|
-      slice.map{ |row| format_row row }.join("\n")
-    end.join(sep)
   end
 end

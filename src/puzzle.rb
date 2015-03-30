@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), "solution")
+require File.join(File.dirname(__FILE__), "sudoku")
 
-class Puzzle
+class Puzzle < Sudoku
   INFILE = "SAT-input-temp.txt"
   OUTFILE = "SAT-output-temp.txt"
 
@@ -9,12 +10,17 @@ class Puzzle
     @units = input.chars.count { |c| c != "0" }
   end
 
+  def print
+    puts "\nInput:"
+    puts "====================="
+    puts format @input.chars.each_slice(9).to_a
+  end
+
   def solve
     generate
     `./minisat #{INFILE} #{OUTFILE}`
     response = File.open(OUTFILE, "r").map(&:chomp)
-    solution = Solution.new response
-    solution.print
+    Solution.new response
   end
 
   private
