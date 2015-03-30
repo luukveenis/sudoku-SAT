@@ -1,4 +1,4 @@
-require_relative "solution"
+require "./solution"
 
 class Puzzle
   INFILE = "SAT-input-temp.txt"

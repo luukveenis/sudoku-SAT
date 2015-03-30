@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative 'puzzle'
+require './puzzle'
 
 def main
   input = File.open(ARGV[0]).reduce("") do |acc, line|
