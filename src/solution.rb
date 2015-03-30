@@ -12,7 +12,7 @@ class Solution
       val = val.to_i
       if val > 0
         i,j,k = table_entry(val)
-        results[i][j] = k
+        results[i-1][j-1] = k
       end
     end
     results
@@ -21,7 +21,7 @@ class Solution
   def table_entry val
     y = ((val - 1) % 81) / 9 + 1
     z = ((val - 1) % 9) + 1
-    x = (val - 1 - z - (9*(y-1))) / 81 + 1
+    x = (val - 1 - z - (9*(y-1))) / 81 + 2
     [x, y, z]
   end
 end
