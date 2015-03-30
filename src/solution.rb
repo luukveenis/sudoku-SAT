@@ -5,7 +5,11 @@ class Solution
   end
 
   def print
-    puts format_results
+    if @satisfiable
+      puts format_results
+    else
+      puts "Error: provided puzzle not satisfiable - no solution"
+    end
   end
 
   private
