@@ -13,7 +13,8 @@ class Solution < Sudoku
       puts format @results
       puts ""
     else
-      puts "Error: provided puzzle not satisfiable - no solution"
+      puts "\nError: provided puzzle not satisfiable - no solution"
+      puts ""
     end
   end
 
