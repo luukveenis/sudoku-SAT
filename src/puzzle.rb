@@ -4,7 +4,7 @@ class Puzzle
   INFILE = "SAT-input-temp.txt"
   OUTFILE = "SAT-output-temp.txt"
 
-  def initialize(input)
+  def initialize input
     @input = input
     @units = input.chars.count { |c| c != "0" }
   end
@@ -12,7 +12,7 @@ class Puzzle
   def solve
     generate
     `./minisat #{INFILE} #{OUTFILE}`
-    response = File.open(OUTFILE, "r").map { |l| l.chomp }
+    response = File.open(OUTFILE, "r").map(&:chomp)
     solution = Solution.new response
     solution.print
   end
@@ -39,7 +39,7 @@ class Puzzle
     (1..9).each do |i|
       (1..9).each do |j|
         (1..9).each do |k|
-          f.print(to_entry(i,j,k) + " ")
+          f.print to_entry(i,j,k) + " "
         end
         f.puts "0"
       end
@@ -51,7 +51,7 @@ class Puzzle
       (1..9).each do |k|
         (1..8).each do |i|
           ((i+1)..9).each do |r|
-            f.print("#{to_entry(i,j,k,true)} #{to_entry(r,j,k,true)} ")
+            f.print "#{to_entry(i,j,k,true)} #{to_entry(r,j,k,true)} "
             f.puts "0"
           end
         end
@@ -64,7 +64,7 @@ class Puzzle
       (1..9).each do |k|
         (1..8).each do |j|
           ((j+1)..9).each do |r|
-            f.print("#{to_entry(i,j,k,true)} #{to_entry(i,r,k,true)} ")
+            f.print "#{to_entry(i,j,k,true)} #{to_entry(i,r,k,true)} "
             f.puts "0"
           end
         end
@@ -79,8 +79,8 @@ class Puzzle
           (1..3).each do |i|
             (1..3).each do |j|
               ((j+1)..3).each do |t|
-                f.print("#{to_entry(3*r + i, 3*s + j, k, true)} ")
-                f.print("#{to_entry(3*r + i, 3*s + t, k, true)} ")
+                f.print "#{to_entry(3*r + i, 3*s + j, k, true)} "
+                f.print "#{to_entry(3*r + i, 3*s + t, k, true)} "
                 f.puts "0"
               end
             end
@@ -95,8 +95,8 @@ class Puzzle
             (1..3).each do |j|
               ((i+1)..3).each do |t|
                 (1..3).each do |u|
-                  f.print("#{to_entry(3*r + i, 3*s + j, k, true)} ")
-                  f.print("#{to_entry(3*r + t, 3*s + u, k,true)} ")
+                  f.print "#{to_entry(3*r + i, 3*s + j, k, true)} "
+                  f.print "#{to_entry(3*r + t, 3*s + u, k,true)} "
                   f.puts "0"
                 end
               end
