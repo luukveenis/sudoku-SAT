@@ -6,7 +6,8 @@ def main
     acc = acc + line.chomp.gsub(/[.*?0]/, "-")
   end
 
-  puzzle = Puzzle.new input
+  use_extended = ARGV[1] == "-e"
+  puzzle = Puzzle.new input, use_extended
   puzzle.print
 
   solution = puzzle.solve

@@ -5,9 +5,10 @@ class Puzzle < Sudoku
   INFILE = "SAT-input-temp.txt"
   OUTFILE = "SAT-output-temp.txt"
 
-  def initialize input
+  def initialize input, use_extended
     @input = input
     @units = input.chars.count { |c| c != "-" }
+    @use_extended = use_extended
   end
 
   def print
@@ -15,6 +16,7 @@ class Puzzle < Sudoku
     puts "(-'s are blank entries)"
     puts "====================="
     puts format @input.chars.each_slice(9).to_a
+    puts "\nUsing extended encoding\n" if @use_extended
   end
 
   def solve
@@ -34,12 +36,17 @@ class Puzzle < Sudoku
     write_each_row f
     write_each_column f
     write_sub_grids f
+    write_extended f if @use_extended
     write_units f
     f.close
   end
 
   def write_header f
-    f.puts "p cnf 729 #{8829 + @units}"
+    if @use_extended
+      f.puts "p cnf 729 #{11988 + @units}"
+    else
+      f.puts "p cnf 729 #{8829 + @units}"
+    end
   end
 
   def write_each_entry f
@@ -109,6 +116,48 @@ class Puzzle < Sudoku
               end
             end
           end
+        end
+      end
+    end
+  end
+
+  def write_extended f
+    (1..9).each do |i|
+      (1..9).each do |j|
+        (1..8).each do |k|
+          ((k+1)..9).each do |r|
+            f.print "#{to_entry(i, j, k, true)} "
+            f.print "#{to_entry(i, j, r, true)} "
+            f.puts "0"
+          end
+        end
+      end
+    end
+    (1..9).each do |j|
+      (1..9).each do |k|
+        (1..9).each do |i|
+          f.print to_entry(i, j, k, true) + " "
+        end
+        f.puts "0"
+      end
+    end
+    (1..9).each do |i|
+      (1..9).each do |k|
+        (1..9).each do |j|
+          f.print to_entry(i, j, k, true) + " "
+        end
+        f.puts "0"
+      end
+    end
+    (1..9).each do |k|
+      (0..2).each do |r|
+        (0..2).each do |s|
+          (1..3).each do |i|
+            (1..3).each do |j|
+              f.print "#{to_entry(3*r + i, 3*s + j, k)} "
+            end
+          end
+        f.puts "0"
         end
       end
     end
