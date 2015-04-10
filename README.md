@@ -40,6 +40,12 @@ provided in the `data` directory and can be used as shown:
 ```
 ./main.rb data/sample2.txt
 ```
+To run the solver using the extended encoding, simply add the -e flag to the
+end of the previous command. **NOTE:** The flag *must* be add the end of the
+command as shown:
+```
+./main.rb data/sample2.txt -e
+```
 
 ## Other SAT Solvers
 
