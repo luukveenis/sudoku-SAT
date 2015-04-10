@@ -1,10 +1,11 @@
 # CSC 320 - Sudoku SAT
 
-This project converts partially solved sudoku puzzles into the standard
-SAT-challenge (DIMACS) format that can be input to the miniSAT SAT solver.
-If there is a solution to the puzzle, it is converted back and presented
-to the user. The results of our experiments are summarized in the project
-report submitted together with this code.
+This is the final project for CSC 320 - Foundations of Computer Science. It was
+completed by Nikita Malhotra and Luuk Veenis. This project converts partially
+solved sudoku puzzles into the standard SAT-challenge (DIMACS) format that can
+be input to the miniSAT SAT solver. If there is a solution to the puzzle, it is
+converted back and presented to the user. The results of our experiments are
+summarized in the project report submitted together with this code.
 
 ## What is included in this submission
 
