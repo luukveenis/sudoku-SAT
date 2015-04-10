@@ -6,6 +6,19 @@ If there is a solution to the puzzle, it is converted back and presented
 to the user. The results of our experiments are summarized in the project
 report submitted together with this code.
 
+## What is included in this submission
+
+We have included a PDF entitled ProjectSummaryReport.pdf that discusses our
+implementation of the Sudoku solver and the results of our experiments with
+different encodings and other solvers.
+
+Our main program is contained in `main.rb` and the instructions for running it
+are in the next section. The `src` directory contains some Ruby files with
+utility classes used by our solver. You should not need to access these in order
+to use our solver. The `data` directory contains some sample sudoku puzzles
+that can be used to test our program. An example use of these is shown in the
+next section.
+
 ## Running the Code
 
 This project was written in Ruby, so you will have to have Ruby installed.
@@ -13,7 +26,7 @@ Since UVic's Linux boxes only have Ruby 1.8.6 installed, the code has ensured
 compatibility with this version and up.
 
 You will need the compiled MiniSAT binary. The code assumes it is in the root
-directory (same directory as main.rb), so please compile it and move the
+directory (same directory as main.rb), so please compile MiniSAT and move the
 `minisat` executable there.
 
 Next, make main.rb executable as follows (you may need to sudo):
